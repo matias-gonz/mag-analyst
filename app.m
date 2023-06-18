@@ -470,7 +470,7 @@ classdef app < matlab.apps.AppBase
 
             update_components(app)
             
-            app.Colors = [ 0.58 0 0.70; 0 0 0; 0 0 0; 0 0 0; 0 0 0];
+            app.Colors = [ 0.58 0 0.70; 0.70 0 0; 0 0 0; 0 0 0; 0 0 0];
 
             addpath(".\minimize")
 
