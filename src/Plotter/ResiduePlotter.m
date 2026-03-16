@@ -44,8 +44,8 @@ classdef ResiduePlotter
 
         function plot_dots(obj, ax)
             hold( ax, 'on' );
-            plot(ax, obj.X, obj.Y, '.', 'markersize', obj.MarkerSize, "Color",[0, 0, 0]);
-            plot(ax, obj.Xhat, obj.Yhat, "Color",[0,0,0]);
+            plot(ax, obj.X, obj.Y, '.', 'markersize', 8, "Color",[0, 0, 0]);
+            plot(ax, obj.Xhat, obj.Yhat, 'LineWidth',2, "Color",[0.80,0,0]);
             xlabel(ax, 'H (A/m)');
             ylabel(ax, obj.Label);
             hold( ax, 'off' );

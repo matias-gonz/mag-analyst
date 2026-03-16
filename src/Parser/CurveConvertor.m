@@ -56,7 +56,7 @@ classdef CurveConvertor
             F_right = griddedInterpolant(M_right_unique,H_right_unique,'linear','none');
             F_left = griddedInterpolant(M_left_unique,H_left_unique,'linear','none');
             
-            N_grid = 50; % number of points of the positive anhysteretic curve calculated from a symmetric hysteresis loop
+            N_grid = 50*1.5; % number of points of the positive anhysteretic curve calculated from a symmetric hysteresis loop
             
             M_query = linspace(0,M_positive_tip,N_grid);
 
@@ -84,7 +84,9 @@ classdef CurveConvertor
 
             % resample the unevenly spaced curve
            
-            logH_n = transpose(log(H(H>0))/max(log(H(H>0))));
+            logH_n = 1*transpose(log(H(H>0))/max(log(H(H>0))));
+%             logH_n = 1*transpose((H(H>0))/max((H(H>0))));
+
             M_n = transpose(M(H>0)/M_positive_tip);
 
             logH_M_n_interparc = interparc(N_grid,logH_n,M_n,'linear'); % this function calculates N_grid spaced points of the original curve in a normalized semi-log M vs H plane
@@ -116,6 +118,7 @@ classdef CurveConvertor
 
             H = H(new_index:end);
             M = M(new_index:end);
+            
         end
     end
 end

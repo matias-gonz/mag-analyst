@@ -12,6 +12,7 @@ classdef DataAnhystereticCurve
             if (H(1) ~= 0)
                 H = [0, H];
                 M = [0, M];
+                
             end
             obj.H = H;
             obj.M = M;
@@ -24,6 +25,7 @@ classdef DataAnhystereticCurve
         function dMdH = get_dMdH(~, H, M)
             dMdH = transpose(gradient(M(:)) ./ gradient(H(:)));
             dMdH(dMdH<0) = 0;
+
         end
 
         function HdMdH = get_HdMdH(~, H, dHdH)

@@ -15,7 +15,7 @@ classdef Plotter
                 error('Plotter:constructor:TooManyOptionalParameters: requires at most 1 optional parameter');
             end
 
-            optargs = {3};
+            optargs = {7};
             optargs(1:numvarargs) = varargin;
             [obj.MarkerSize] = optargs{:};
           
@@ -61,12 +61,14 @@ classdef Plotter
 
         function plot_M_log(obj, ax, plot_components, plot_grid)
             semilogx(ax, obj.data_curve.H, obj.data_curve.M, '.', 'markersize', obj.MarkerSize, "Color", [0 0 0]);
+%             loglog(ax, obj.data_curve.H, obj.data_curve.M, '.', 'markersize', obj.MarkerSize, "Color", [0 0 0]);
             hold( ax, 'on' )
             tip_data = max(obj.data_curve.M);
             tip_model = max(obj.modeled_curve.M);
             tip = max([tip_model, tip_data]);
             ax.YAxis.Exponent = obj.get_scientific_notation_exponent(tip);
-            semilogx(ax, obj.modeled_curve.H, obj.modeled_curve.M, "Color", obj.Colors(1,:));
+%             semilogx(ax, obj.modeled_curve.H, obj.modeled_curve.M, "Color", obj.Colors(1,:));
+            loglog(ax, obj.modeled_curve.H, obj.modeled_curve.M, "Color", obj.Colors(1,:));
 
             if(plot_components)
                 for i=1:size(obj.modeled_curve.Mi,1)
@@ -117,13 +119,15 @@ classdef Plotter
         end
 
         function plot_dMdH_log(obj, ax, plot_components, plot_grid)
-            semilogx(ax, obj.data_curve.H, obj.data_curve.dMdH, '.', 'markersize', obj.MarkerSize, "Color", [0 0 0]);
+%             semilogx(ax, obj.data_curve.H, obj.data_curve.dMdH, '.', 'markersize', obj.MarkerSize, "Color", [0 0 0]);
+            loglog(ax, obj.data_curve.H, obj.data_curve.dMdH, '.', 'markersize', obj.MarkerSize, "Color", [0 0 0]);
             hold( ax, 'on' );
             tip_data = max(obj.data_curve.dMdH);
             tip_model = max(obj.modeled_curve.dMdH);
             tip = max([tip_model, tip_data]);
             ax.YAxis.Exponent = obj.get_scientific_notation_exponent(tip);
-            semilogx(ax, obj.modeled_curve.H, obj.modeled_curve.dMdH, "Color", obj.Colors(1,:));
+%             semilogx(ax, obj.modeled_curve.H, obj.modeled_curve.dMdH, "Color", obj.Colors(1,:));
+            loglog(ax, obj.modeled_curve.H, obj.modeled_curve.dMdH, "Color", obj.Colors(1,:));
             obj.plot_Hcr(ax);
             
             if(plot_components)
@@ -146,12 +150,14 @@ classdef Plotter
 
         function plot_HdMdH_log(obj, ax, plot_components, plot_grid)
             semilogx(ax, obj.modeled_curve.H, obj.modeled_curve.HdMdH, "Color", obj.Colors(1,:));
+%             loglog(ax, obj.modeled_curve.H, obj.modeled_curve.HdMdH, "Color", obj.Colors(1,:));
             hold( ax, 'on' );
             tip_data = max(obj.data_curve.HdMdH);
             tip_model = max(obj.modeled_curve.HdMdH);
             tip = max([tip_model, tip_data]);
             ax.YAxis.Exponent = obj.get_scientific_notation_exponent(tip);
             semilogx(ax, obj.data_curve.H, obj.data_curve.HdMdH, '.', 'markersize', obj.MarkerSize, "Color", [0 0 0]);
+%             loglog(ax, obj.data_curve.H, obj.data_curve.HdMdH, '.', 'markersize', obj.MarkerSize, "Color", [0 0 0]);
             obj.plot_Hcr(ax);
 
             if(plot_components)
